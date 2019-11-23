@@ -37,22 +37,22 @@ namespace KameraUsb
         /// <summary>
         /// Tablica przechowująca wartości jasności
         /// </summary>
-        int[] brightness = { 0, 0 };
+        public int Brightness { get; set; }
 
         /// <summary>
         /// Tablica przechowująca wartości kontrastu
         /// </summary>
-        int[] contrast = { 0, 0 };
+        public int Contrast { get; set; }
 
         /// <summary>
         /// Tablica przechowująca wartości nasycenia
         /// </summary>
-        int[] saturation = { 0, 0 };
+        public int Saturation { get; set; }
 
         /// <summary>
         /// Tablica przechowująca wartości odcienia
         /// </summary>
-        int[] hue = { 0, 0 };
+        public int Hue { get; set; }
 
         /// <summary>
         /// Obiekt umożliwiający odczyt obrazu
@@ -68,6 +68,10 @@ namespace KameraUsb
         {
             InitializeComponent();
             connectedCameraIsRecording = false;
+            Brightness = 0;
+            Saturation = 0;
+            Contrast = 0;
+            Hue = 0;
         }
 
         /// <summary>
@@ -92,10 +96,15 @@ namespace KameraUsb
         private void DisplayCapturedPicture(object sender, NewFrameEventArgs eventArgs)
         {
             Bitmap bitmap = (Bitmap)eventArgs.Frame.Clone();
-            BrightnessCorrection brightnessCorrection = new BrightnessCorrection(brightness[0]);
-            ContrastCorrection contrastCorrection = new ContrastCorrection(contrast[0]);
-            SaturationCorrection saturationCorrection = new SaturationCorrection(saturation[0]);
-            HueModifier hueModifier = new HueModifier(hue[0]);
+            BrightnessCorrection brightnessCorrection = new BrightnessCorrection(Brightness);
+            ContrastCorrection contrastCorrection = new ContrastCorrection(Contrast);
+            SaturationCorrection saturationCorrection = new SaturationCorrection(Saturation * 0.1f);
+            HueModifier hueModifier = new HueModifier(Hue);
+
+            bitmap = brightnessCorrection.Apply((Bitmap)bitmap.Clone());
+            bitmap = contrastCorrection.Apply((Bitmap)bitmap.Clone());
+            bitmap = saturationCorrection.Apply((Bitmap)bitmap.Clone());
+            bitmap = hueModifier.Apply((Bitmap)bitmap.Clone());
 
             if(connectedCameraIsRecording)
             {
@@ -156,28 +165,44 @@ namespace KameraUsb
         /// <param name="e"></param>
         private void startRecordingButton_Click(object sender, EventArgs e)
         {
-            if(connectedCamera.IsRunning)
+            try
             {
-                try
+                if (connectedCamera.IsRunning)
                 {
-                    saveVideoFileDialog = new SaveFileDialog();
-                    saveVideoFileDialog.Filter = "Avi Files (*.avi)|*.avi";
-                    saveVideoFileDialog.Title = "Wskaż miejsce do zapisu";
-                    saveVideoFileDialog.ShowDialog();
-                    videoWriter = new VideoFileWriter();
-                    videoWriter.Open(saveVideoFileDialog.FileName, cameraPictureBox.Image.Width, cameraPictureBox.Image.Height, 30, VideoCodec.MPEG4);
-                    connectedCameraIsRecording = true;
+                    try
+                    {
+                        saveVideoFileDialog = new SaveFileDialog();
+                        saveVideoFileDialog.Filter = "Avi Files (*.avi)|*.avi";
+                        saveVideoFileDialog.Title = "Wskaż miejsce do zapisu";
+                        saveVideoFileDialog.ShowDialog();
+                        videoWriter = new VideoFileWriter();
+                        videoWriter.Open(saveVideoFileDialog.FileName, cameraPictureBox.Image.Width, cameraPictureBox.Image.Height, 30, VideoCodec.MPEG4);
+                        connectedCameraIsRecording = true;
+                    }
+                    catch (Exception) { }
                 }
-                catch(Exception) { }
             }
+            catch(Exception)
+            {
+                MessageBox.Show("Należy najpierw uruchomić wybraną kamerę");
+            }
+
+
         }
 
         private void startDisplayingButton_Click(object sender, EventArgs e)
         {
-            connectedCamera = new VideoCaptureDevice(connectedDevices[camerasListComboBox.SelectedIndex].MonikerString);
-            connectedCamera.NewFrame += new NewFrameEventHandler(DisplayCapturedPicture);
-            connectedCamera.Stop();
-            connectedCamera.Start();
+            try
+            {
+                connectedCamera = new VideoCaptureDevice(connectedDevices[camerasListComboBox.SelectedIndex].MonikerString);
+                connectedCamera.NewFrame += new NewFrameEventHandler(DisplayCapturedPicture);
+                connectedCamera.Stop();
+                connectedCamera.Start();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Należy najpierw wybrać kamerę");
+            }
         }
 
         private void stopRecordingButton_Click(object sender, EventArgs e)
@@ -187,11 +212,71 @@ namespace KameraUsb
                 connectedCameraIsRecording = false;
                 videoWriter.Close();
             }
+            else
+            {
+                MessageBox.Show("Nie można zatrzymać nagrywania, ponieważ nic nie jest obecnie nagrywane");
+            }
         }
 
         private void stopDisplayingButton_Click(object sender, EventArgs e)
         {
-            connectedCamera.Stop();
+            try
+            {
+                connectedCamera.Stop();
+
+            }
+            catch(Exception)
+            {
+                MessageBox.Show("Nie można zatrzymać kamery, ponieważ żadna nie została wybrana");
+            }
+        }
+
+        /// <summary>
+        /// Funkcja wywoływana przy zmianie jasności
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void brightnessBar_Scroll(object sender, EventArgs e)
+        {
+            Brightness = brightnessBar.Value;
+        }
+
+        /// <summary>
+        /// Funkcja wywoływana przy zmianie nasycenia
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void saturationBar_Scroll(object sender, EventArgs e)
+        {
+            Saturation = saturationBar.Value;
+        }
+
+        /// <summary>
+        /// Funkcja wywoływana przy zmianie kontrastu
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void contrastBar_Scroll(object sender, EventArgs e)
+        {
+            Contrast = contrastBar.Value;
+        }
+
+        /// <summary>
+        /// Funkcja wywoływania przy zmianie koloru
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void hueBar_Scroll(object sender, EventArgs e)
+        {
+            Hue = hueBar.Value;
+        }
+
+        private void takePicture_Click(object sender, EventArgs e)
+        {
+            Bitmap picture = new Bitmap(cameraPictureBox.Image);
+            picture.Save("screen.bmp");
+            picture.Dispose();
+            picture = null;
         }
     }
 }

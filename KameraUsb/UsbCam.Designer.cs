@@ -44,6 +44,7 @@
             this.hueBarLabel = new System.Windows.Forms.Label();
             this.hueBar = new System.Windows.Forms.TrackBar();
             this.saveVideoFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.takePicture = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.cameraPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.brightnessBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.saturationBar)).BeginInit();
@@ -120,9 +121,11 @@
             // brightnessBar
             // 
             this.brightnessBar.Location = new System.Drawing.Point(850, 143);
+            this.brightnessBar.Maximum = 100;
             this.brightnessBar.Name = "brightnessBar";
             this.brightnessBar.Size = new System.Drawing.Size(176, 56);
             this.brightnessBar.TabIndex = 7;
+            this.brightnessBar.Scroll += new System.EventHandler(this.brightnessBar_Scroll);
             // 
             // brightnessBarLabel
             // 
@@ -140,6 +143,7 @@
             this.saturationBar.Name = "saturationBar";
             this.saturationBar.Size = new System.Drawing.Size(176, 56);
             this.saturationBar.TabIndex = 9;
+            this.saturationBar.Scroll += new System.EventHandler(this.saturationBar_Scroll);
             // 
             // saturationBarLabel
             // 
@@ -154,9 +158,11 @@
             // contrastBar
             // 
             this.contrastBar.Location = new System.Drawing.Point(850, 319);
+            this.contrastBar.Maximum = 100;
             this.contrastBar.Name = "contrastBar";
             this.contrastBar.Size = new System.Drawing.Size(176, 56);
             this.contrastBar.TabIndex = 11;
+            this.contrastBar.Scroll += new System.EventHandler(this.contrastBar_Scroll);
             // 
             // contrastBarLabel
             // 
@@ -181,15 +187,28 @@
             // hueBar
             // 
             this.hueBar.Location = new System.Drawing.Point(850, 397);
+            this.hueBar.Maximum = 100;
             this.hueBar.Name = "hueBar";
             this.hueBar.Size = new System.Drawing.Size(176, 56);
             this.hueBar.TabIndex = 14;
+            this.hueBar.Scroll += new System.EventHandler(this.hueBar_Scroll);
+            // 
+            // takePicture
+            // 
+            this.takePicture.Location = new System.Drawing.Point(654, 563);
+            this.takePicture.Name = "takePicture";
+            this.takePicture.Size = new System.Drawing.Size(176, 32);
+            this.takePicture.TabIndex = 15;
+            this.takePicture.Text = "Zrób zdjęcie";
+            this.takePicture.UseVisualStyleBackColor = true;
+            this.takePicture.Click += new System.EventHandler(this.takePicture_Click);
             // 
             // UsbCam
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1068, 621);
+            this.Controls.Add(this.takePicture);
             this.Controls.Add(this.hueBar);
             this.Controls.Add(this.hueBarLabel);
             this.Controls.Add(this.contrastBarLabel);
@@ -235,6 +254,7 @@
         private System.Windows.Forms.Label hueBarLabel;
         private System.Windows.Forms.TrackBar hueBar;
         private System.Windows.Forms.SaveFileDialog saveVideoFileDialog;
+        private System.Windows.Forms.Button takePicture;
     }
 }
 
