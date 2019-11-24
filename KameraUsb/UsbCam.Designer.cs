@@ -54,7 +54,7 @@
             // 
             // searchForCamerasButton
             // 
-            this.searchForCamerasButton.Location = new System.Drawing.Point(716, 12);
+            this.searchForCamerasButton.Location = new System.Drawing.Point(820, 12);
             this.searchForCamerasButton.Name = "searchForCamerasButton";
             this.searchForCamerasButton.Size = new System.Drawing.Size(260, 39);
             this.searchForCamerasButton.TabIndex = 0;
@@ -64,23 +64,23 @@
             // 
             // cameraPictureBox
             // 
-            this.cameraPictureBox.Location = new System.Drawing.Point(12, 12);
+            this.cameraPictureBox.Location = new System.Drawing.Point(50, 29);
             this.cameraPictureBox.Name = "cameraPictureBox";
-            this.cameraPictureBox.Size = new System.Drawing.Size(600, 600);
+            this.cameraPictureBox.Size = new System.Drawing.Size(640, 480);
             this.cameraPictureBox.TabIndex = 1;
             this.cameraPictureBox.TabStop = false;
             // 
             // camerasListComboBox
             // 
             this.camerasListComboBox.FormattingEnabled = true;
-            this.camerasListComboBox.Location = new System.Drawing.Point(716, 57);
+            this.camerasListComboBox.Location = new System.Drawing.Point(820, 57);
             this.camerasListComboBox.Name = "camerasListComboBox";
             this.camerasListComboBox.Size = new System.Drawing.Size(260, 24);
             this.camerasListComboBox.TabIndex = 2;
             // 
             // startRecordingButton
             // 
-            this.startRecordingButton.Location = new System.Drawing.Point(654, 487);
+            this.startRecordingButton.Location = new System.Drawing.Point(746, 439);
             this.startRecordingButton.Name = "startRecordingButton";
             this.startRecordingButton.Size = new System.Drawing.Size(176, 32);
             this.startRecordingButton.TabIndex = 3;
@@ -90,7 +90,7 @@
             // 
             // stopRecordingButton
             // 
-            this.stopRecordingButton.Location = new System.Drawing.Point(654, 525);
+            this.stopRecordingButton.Location = new System.Drawing.Point(746, 477);
             this.stopRecordingButton.Name = "stopRecordingButton";
             this.stopRecordingButton.Size = new System.Drawing.Size(176, 32);
             this.stopRecordingButton.TabIndex = 4;
@@ -100,7 +100,7 @@
             // 
             // startDisplayingButton
             // 
-            this.startDisplayingButton.Location = new System.Drawing.Point(850, 487);
+            this.startDisplayingButton.Location = new System.Drawing.Point(942, 439);
             this.startDisplayingButton.Name = "startDisplayingButton";
             this.startDisplayingButton.Size = new System.Drawing.Size(176, 32);
             this.startDisplayingButton.TabIndex = 5;
@@ -110,7 +110,7 @@
             // 
             // stopDisplayingButton
             // 
-            this.stopDisplayingButton.Location = new System.Drawing.Point(850, 525);
+            this.stopDisplayingButton.Location = new System.Drawing.Point(942, 477);
             this.stopDisplayingButton.Name = "stopDisplayingButton";
             this.stopDisplayingButton.Size = new System.Drawing.Size(176, 32);
             this.stopDisplayingButton.TabIndex = 6;
@@ -120,7 +120,7 @@
             // 
             // brightnessBar
             // 
-            this.brightnessBar.Location = new System.Drawing.Point(850, 143);
+            this.brightnessBar.Location = new System.Drawing.Point(920, 123);
             this.brightnessBar.Maximum = 100;
             this.brightnessBar.Name = "brightnessBar";
             this.brightnessBar.Size = new System.Drawing.Size(176, 56);
@@ -131,7 +131,7 @@
             // 
             this.brightnessBarLabel.AutoSize = true;
             this.brightnessBarLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.brightnessBarLabel.Location = new System.Drawing.Point(710, 143);
+            this.brightnessBarLabel.Location = new System.Drawing.Point(780, 123);
             this.brightnessBarLabel.Name = "brightnessBarLabel";
             this.brightnessBarLabel.Size = new System.Drawing.Size(115, 31);
             this.brightnessBarLabel.TabIndex = 8;
@@ -139,7 +139,7 @@
             // 
             // saturationBar
             // 
-            this.saturationBar.Location = new System.Drawing.Point(850, 226);
+            this.saturationBar.Location = new System.Drawing.Point(920, 206);
             this.saturationBar.Name = "saturationBar";
             this.saturationBar.Size = new System.Drawing.Size(176, 56);
             this.saturationBar.TabIndex = 9;
@@ -149,7 +149,7 @@
             // 
             this.saturationBarLabel.AutoSize = true;
             this.saturationBarLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.saturationBarLabel.Location = new System.Drawing.Point(710, 226);
+            this.saturationBarLabel.Location = new System.Drawing.Point(780, 206);
             this.saturationBarLabel.Name = "saturationBarLabel";
             this.saturationBarLabel.Size = new System.Drawing.Size(142, 31);
             this.saturationBarLabel.TabIndex = 10;
@@ -157,7 +157,7 @@
             // 
             // contrastBar
             // 
-            this.contrastBar.Location = new System.Drawing.Point(850, 319);
+            this.contrastBar.Location = new System.Drawing.Point(920, 299);
             this.contrastBar.Maximum = 100;
             this.contrastBar.Name = "contrastBar";
             this.contrastBar.Size = new System.Drawing.Size(176, 56);
@@ -168,7 +168,7 @@
             // 
             this.contrastBarLabel.AutoSize = true;
             this.contrastBarLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.contrastBarLabel.Location = new System.Drawing.Point(710, 319);
+            this.contrastBarLabel.Location = new System.Drawing.Point(780, 299);
             this.contrastBarLabel.Name = "contrastBarLabel";
             this.contrastBarLabel.Size = new System.Drawing.Size(116, 31);
             this.contrastBarLabel.TabIndex = 12;
@@ -178,7 +178,7 @@
             // 
             this.hueBarLabel.AutoSize = true;
             this.hueBarLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.hueBarLabel.Location = new System.Drawing.Point(710, 397);
+            this.hueBarLabel.Location = new System.Drawing.Point(780, 377);
             this.hueBarLabel.Name = "hueBarLabel";
             this.hueBarLabel.Size = new System.Drawing.Size(100, 31);
             this.hueBarLabel.TabIndex = 13;
@@ -186,7 +186,7 @@
             // 
             // hueBar
             // 
-            this.hueBar.Location = new System.Drawing.Point(850, 397);
+            this.hueBar.Location = new System.Drawing.Point(920, 377);
             this.hueBar.Maximum = 100;
             this.hueBar.Name = "hueBar";
             this.hueBar.Size = new System.Drawing.Size(176, 56);
@@ -195,7 +195,7 @@
             // 
             // takePicture
             // 
-            this.takePicture.Location = new System.Drawing.Point(654, 563);
+            this.takePicture.Location = new System.Drawing.Point(746, 515);
             this.takePicture.Name = "takePicture";
             this.takePicture.Size = new System.Drawing.Size(176, 32);
             this.takePicture.TabIndex = 15;
@@ -207,7 +207,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1068, 621);
+            this.ClientSize = new System.Drawing.Size(1205, 564);
             this.Controls.Add(this.takePicture);
             this.Controls.Add(this.hueBar);
             this.Controls.Add(this.hueBarLabel);

@@ -95,7 +95,8 @@ namespace KameraUsb
 
         private void DisplayCapturedPicture(object sender, NewFrameEventArgs eventArgs)
         {
-            Bitmap bitmap = (Bitmap)eventArgs.Frame.Clone();
+            Bitmap bitmap = new Bitmap(eventArgs.Frame, new Size(cameraPictureBox.Width, cameraPictureBox.Height));
+
             BrightnessCorrection brightnessCorrection = new BrightnessCorrection(Brightness);
             ContrastCorrection contrastCorrection = new ContrastCorrection(Contrast);
             SaturationCorrection saturationCorrection = new SaturationCorrection(Saturation * 0.1f);
